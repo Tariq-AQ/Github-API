@@ -1,23 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import React,{ useState} from 'react'
+
+
 
 function App() {
+  let reposArray =[];
+  const [orgName, setOrgName]=useState('example');
+
+
+
+const handleSearch =async()=>{
+  await fetch(`https://api.github.com/users/${orgName}/repos`)
+  .then(result=> result.json())
+  .then(apiData=>{
+  
+  
+    reposArray.push(apiData);
+    console.log(reposArray);
+   
+  });
+}
+
+
   return (
+
+
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input placeholder='search' onChange={(text)=>setOrgName(text)}/>
+      <button onClick={handleSearch} >Search</button>
+      {/* <h3>Repos of </h3>
+      {reposArray.map((e)=>{
+<h3>{e}</h3>
+      })}
+       */}
     </div>
   );
 }
