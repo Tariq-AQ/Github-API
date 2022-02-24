@@ -26,13 +26,9 @@ const handleSearch =async()=>{
 
 
     <div className="App">
-      <input placeholder='search' onChange={(text)=>setOrgName(text)}/>
+      <input placeholder='search' onChange={(e)=>setOrgName(e.target.value)}/>
       <button onClick={handleSearch} >Search</button>
-      {/* <h3>Repos of </h3>
-      {reposArray.map((e)=>{
-<h3>{e}</h3>
-      })}
-       */}
+      
     </div>
   );
 }
